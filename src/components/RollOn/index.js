@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Dice from "../Dice";
-import { Button, Container, HeaderOne, Shine } from "./styledComponent";
+import {
+  Button,
+  Container,
+  HeaderOne,
+  Shine,
+  AnimatedBeats
+} from "./styledComponent";
 
 const RollOn = () => {
   const [playerOne, setPlayerOne] = useState(1);
   const [playerTwo, setPlayerTwo] = useState(1);
 
+  const [playerOneCount, setPlayerOneCount] = useState(playerOne);
+  const [playerTwoCount, setPlayerTwoCount] = useState(playerTwo);
+
   const [playerOneHits, setPlayerOneHits] = useState(false);
   const [playerTwoHits, setPlayerTwoHits] = useState(false);
 
-  useEffect(() => {}, [playerOne, playerTwo, playerOneHits, playerTwoHits]);
+  useEffect(() => {}, [
+    playerOne,
+    playerTwo,
+    playerOneCount,
+    playerTwoCount,
+    playerOneHits,
+    playerTwoHits
+  ]);
 
   const getRandomInt = () => {
     let min = Math.ceil(1);
@@ -43,6 +59,7 @@ const RollOn = () => {
 
   const playerOneCounts = () => {
     let countOne = getRandomInt();
+    setPlayerOneCount(playerOneCount + countOne);
     setPlayerOne(countOne);
     console.log(countOne);
 
@@ -51,6 +68,7 @@ const RollOn = () => {
   const playerTwoCounts = () => {
     let countTwo = getRandomInt();
     console.log(countTwo);
+    setPlayerTwoCount(playerTwoCount + countTwo);
     setPlayerTwo(countTwo);
     setTwoTrueOrFalse(countTwo);
   };
@@ -59,10 +77,21 @@ const RollOn = () => {
     <div>
       <Container>
         <HeaderOne>
-          Player 1 - {playerOne === 6 ? <Shine>{playerOne}</Shine> : playerOne}
+          Player 1 -{" "}
+          {playerOne === 6 ? (
+            <AnimatedBeats>
+              {" "}
+              <Shine>{playerOne}</Shine>
+            </AnimatedBeats>
+          ) : (
+            playerOne
+          )}
+          <div>Count: {playerOneCount}</div>
           {playerOne === 6 ? (
             <Shine>
-              <p>Roll Again</p>
+              <AnimatedBeats>
+                <p>Roll Again</p>
+              </AnimatedBeats>
             </Shine>
           ) : null}
         </HeaderOne>
@@ -72,10 +101,21 @@ const RollOn = () => {
       </Container>
       <Container>
         <HeaderOne>
-          Player 2 - {playerTwo === 6 ? <Shine>{playerTwo}</Shine> : playerTwo}
+          Player 2 -{" "}
+          {playerTwo === 6 ? (
+            <AnimatedBeats>
+              {" "}
+              <Shine>{playerTwo}</Shine>{" "}
+            </AnimatedBeats>
+          ) : (
+            playerTwo
+          )}
+          <div>Count: {playerTwoCount}</div>
           {playerTwo === 6 ? (
             <Shine>
-              <p>Roll Again</p>
+              <AnimatedBeats>
+                <p>Roll Again</p>
+              </AnimatedBeats>
             </Shine>
           ) : null}
         </HeaderOne>

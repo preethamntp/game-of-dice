@@ -54,6 +54,18 @@ const glow = keyframes`
     }
 `;
 
+const zoomIn = keyframes`
+    0% {
+        transform: scale(1,1);
+    }
+    50% {
+        transform: scale(1.2,1.2);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+`;
+
 export const Shine = styled.span`
   font-size: 28px;
   color: #fff;
@@ -61,4 +73,37 @@ export const Shine = styled.span`
   -webkit-animation: ${glow} 1s ease-in-out infinite alternate;
   -moz-animation: ${glow} 1s ease-in-out infinite alternate;
   animation: ${glow} 1s ease-in-out infinite alternate;
+`;
+
+const heartBeat = keyframes`
+  0%
+  {
+    transform: scale( .75 );
+  }
+  20%
+  {
+    transform: scale( 1.1 );
+  }
+  40%
+  {
+    transform: scale( .75 );
+  }
+  60%
+  {
+    transform: scale( 1.1 );
+  }
+  80%
+  {
+    transform: scale( .75 );
+  }
+  100%
+  {
+    transform: scale( .75 );
+  }
+`;
+
+export const AnimatedBeats = styled.span`
+  display: -moz-inline-stack;
+  display: inline-block;
+  animation: ${heartBeat} 1s 2000ms;
 `;
