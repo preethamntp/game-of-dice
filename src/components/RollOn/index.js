@@ -8,6 +8,8 @@ import {
   AnimatedBeats
 } from "./styledComponent";
 
+const winner = 50;
+
 const RollOn = () => {
   const [playerOne, setPlayerOne] = useState(1);
   const [playerTwo, setPlayerTwo] = useState(1);
@@ -34,6 +36,10 @@ const RollOn = () => {
   };
 
   const setOneTrueOrFalse = num => {
+    if (playerOneCount >= winner) {
+      setPlayerTwoHits(true);
+      setPlayerOneHits(true);
+    }
     if (num !== 6) {
       console.log("!6", num);
       setPlayerTwoHits(false);
@@ -46,6 +52,10 @@ const RollOn = () => {
   };
 
   const setTwoTrueOrFalse = num => {
+    if (playerTwoCount >= winner) {
+      setPlayerTwoHits(true);
+      setPlayerOneHits(true);
+    }
     if (num !== 6) {
       console.log("!6", num);
       setPlayerTwoHits(true);
@@ -90,7 +100,7 @@ const RollOn = () => {
           {playerOne === 6 ? (
             <Shine>
               <AnimatedBeats>
-                <p>Roll Again</p>
+                {winner <= playerOneCount ? <p>Winner</p> : <p>Roll Again</p>}
               </AnimatedBeats>
             </Shine>
           ) : null}
@@ -114,7 +124,8 @@ const RollOn = () => {
           {playerTwo === 6 ? (
             <Shine>
               <AnimatedBeats>
-                <p>Roll Again</p>
+                {/* <p>Roll Again</p> */}
+                {winner <= playerTwoCount ? <p>Winner</p> : <p>Roll Again</p>}
               </AnimatedBeats>
             </Shine>
           ) : null}
@@ -123,6 +134,7 @@ const RollOn = () => {
           <Dice key={v} value={v} />
         ))}
       </Container>
+
       <Button disabled={playerOneHits} onClick={playerOneCounts} primary>
         Player 1
       </Button>
