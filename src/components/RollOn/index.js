@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Dice from "../Dice";
-import { Button, Container, HeaderOne } from "./styledComponent";
+import { Button, Container, HeaderOne, Shine } from "./styledComponent";
 
 const RollOn = () => {
   const [playerOne, setPlayerOne] = useState(1);
@@ -58,13 +58,27 @@ const RollOn = () => {
   return (
     <div>
       <Container>
-        <HeaderOne>Player 1</HeaderOne>
+        <HeaderOne>
+          Player 1 - {playerOne === 6 ? <Shine>{playerOne}</Shine> : playerOne}
+          {playerOne === 6 ? (
+            <Shine>
+              <p>Roll Again</p>
+            </Shine>
+          ) : null}
+        </HeaderOne>
         {[playerOne].map(v => (
           <Dice key={v} value={v} />
         ))}
       </Container>
       <Container>
-        <HeaderOne>Player 2</HeaderOne>
+        <HeaderOne>
+          Player 2 - {playerTwo === 6 ? <Shine>{playerTwo}</Shine> : playerTwo}
+          {playerTwo === 6 ? (
+            <Shine>
+              <p>Roll Again</p>
+            </Shine>
+          ) : null}
+        </HeaderOne>
         {[playerTwo].map(v => (
           <Dice key={v} value={v} />
         ))}
