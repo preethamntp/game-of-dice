@@ -8,17 +8,17 @@ import {
   AnimatedBeats
 } from "./styledComponent";
 
-const winner = 50;
-
 const RollOn = () => {
   const [playerOne, setPlayerOne] = useState(1);
   const [playerTwo, setPlayerTwo] = useState(1);
 
-  const [playerOneCount, setPlayerOneCount] = useState(playerOne);
-  const [playerTwoCount, setPlayerTwoCount] = useState(playerTwo);
+  const [playerOneCount, setPlayerOneCount] = useState(0);
+  const [playerTwoCount, setPlayerTwoCount] = useState(0);
 
   const [playerOneHits, setPlayerOneHits] = useState(false);
   const [playerTwoHits, setPlayerTwoHits] = useState(false);
+
+  const [winner, setWinner] = useState(50);
 
   useEffect(() => {}, [
     playerOne,
