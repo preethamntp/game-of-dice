@@ -66,6 +66,13 @@ const zoomIn = keyframes`
     }
 `;
 
+export const canvas = styled.canvas`
+  border: 1px solid silver;
+  background: white;
+  cursor: -webkit-grab;
+  display: block;
+`;
+
 export const Shine = styled.span`
   font-size: 28px;
   color: #fff;

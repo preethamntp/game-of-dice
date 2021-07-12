@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Dice from "../Dice";
 import {
   Button,
@@ -8,7 +8,9 @@ import {
   AnimatedBeats
 } from "./styledComponent";
 
-const RollOn = () => {
+import Realistic from "./Confetti";
+
+const RollOn = ({ props }) => {
   const [playerOne, setPlayerOne] = useState(1);
   const [playerTwo, setPlayerTwo] = useState(1);
 
@@ -28,10 +30,12 @@ const RollOn = () => {
     playerOneHits,
     playerTwoHits
   ]);
+  const classCompRef = useRef(null);
 
   const getRandomInt = () => {
     let min = Math.ceil(1);
     let max = Math.floor(6);
+
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
@@ -39,6 +43,7 @@ const RollOn = () => {
     if (playerOneCount >= winner) {
       setPlayerTwoHits(true);
       setPlayerOneHits(true);
+      classCompRef.current.handlerFire();
     }
     if (num !== 6) {
       console.log("!6", num);
@@ -55,6 +60,7 @@ const RollOn = () => {
     if (playerTwoCount >= winner) {
       setPlayerTwoHits(true);
       setPlayerOneHits(true);
+      classCompRef.current.handlerFire();
     }
     if (num !== 6) {
       console.log("!6", num);
@@ -141,6 +147,7 @@ const RollOn = () => {
       <Button disabled={playerTwoHits} onClick={playerTwoCounts} primary>
         Primary 2
       </Button>
+      <Realistic ref={classCompRef} />
     </div>
   );
 };
